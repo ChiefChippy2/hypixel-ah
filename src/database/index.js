@@ -9,7 +9,7 @@
     Everything will be stored as string, so no issues usually
 
 */
-if(process.env.DBModule)  module.exports = require(process.env.DB-Module);
+if(process.env.DBModule)  module.exports = require(process.env.DBModule);
 else if(process.env.NODB) module.exports = {"set":()=>true,"get":()=>false,"delete":()=>true}
 else {
     const quick = require("quick.db");
