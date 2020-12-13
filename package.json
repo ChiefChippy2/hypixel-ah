@@ -1,0 +1,27 @@
+{
+  "name": "hypixel-ah",
+  "version": "1.0.0",
+  "description": "This is a project to make a realtime dashboard of skyblock auctions\r # Doesn't that exist already\r Yes, but they are separate and not really good\r # TODO\r 1. Set up backend\r     - Smart & Persistent database update\r     - WS connections to client to emit changes\r     - all ftm\r 2. Set up frontend ( site )\r     - Device Responsive\r     - Real-time feeling ( almost real-time updates, notifications, etc)\r 3. Set up discord bot\r     - No notifications in dms with in ( maybe donators only )\r     - Auction watch\r     - Auction \"dashboard\" in a followable channel\r 4. Extensions\r     - Make it possible to see if the item is overpriced/underpriced\r     - Accounts?\r     - Push notifs?",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiefChippy2/hypixel-ah.git"
+  },
+  "keywords": [
+    "hypixel",
+    "minecraft",
+    "skyblock"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChiefChippy2/hypixel-ah/issues"
+  },
+  "homepage": "https://github.com/ChiefChippy2/hypixel-ah#readme",
+  "dependencies": {
+    "ws": "^7.4.1"
+  }
+}

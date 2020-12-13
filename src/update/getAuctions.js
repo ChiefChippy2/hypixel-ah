@@ -1,17 +1,20 @@
 const Client = require("../API");
+const PolyFill = require("./polyfill");
 const arrange = require("./arrange");
 const compare = require("./compare");
 const EventEmitter = require('events');
 module.exports = class GlobalAuctions extends EventEmitter {
     constructor(data){
+        super()
         this.reqNum;
     }
     async init(){
-        const initial = await Client.getSkyblockAuctions();
+        const initial = await PolyFill.getSkyblockAuctions();
+        this.emit("_initialized")
         this.reqNum=initial.info.totalPages;
         this.currentPage=0;
         this.auction = arrange(initial.auctions);
-        process.on("nextTick",this.updateManager)
+        console.log("Done init")
         return this;
     }
     get calculatedRefresh(){
@@ -20,12 +23,11 @@ module.exports = class GlobalAuctions extends EventEmitter {
     async update(){
         const auctions = await Client.getSkyblockAuctions(this.currentPage)
         this.reqNum = auctions.info.totalPages;
-        const changes = compare(arrange(auctions),this.auction)
+        const changes = compare(arrange(auctions.auctions),this.auction)
         this.auction = changes.oldMap;
-        this.emit("update",...changes.changes)
+        this.currentPage++;
+        if(this.currentPage>this.reqNum) this.currentPage=0;
+        this.emit("update",changes.changes)
+        return this
     }
-    async updateManager(){
-        setTimeout(this.update,this.calculatedRefresh)
-    }
-
 }
