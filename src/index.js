@@ -9,12 +9,12 @@ async function updater(){
 }
 async function start(){
     await AuctionUpdate.init();
-    console.log(AuctionUpdate) 
-    AuctionUpdate.on("_initialized",console.log);
     console.log("WS Acceping connection")
     const ws = new webSocket(AuctionUpdate);
+    process.nextTick(()=>{
     ws.init();
     const dispatching = new dispatch(ws,AuctionUpdate);
     updater();
+    })
 }
 start();
