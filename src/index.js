@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Auctions = require("./update/getAuctions");
 const AuctionUpdate = new Auctions();
 const webSocket = require('./ws/ws');

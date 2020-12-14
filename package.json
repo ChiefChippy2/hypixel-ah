@@ -22,6 +22,8 @@
   },
   "homepage": "https://github.com/ChiefChippy2/hypixel-ah#readme",
   "dependencies": {
-    "ws": "^7.4.1"
+    "dotenv": "^8.2.0",
+    "ws": "^7.4.1",
+    "hypixel-api-reborn": "Hypixel-API-reborn/hypixel-api-reborn#master"
   }
 }
