@@ -1,6 +1,10 @@
 const Objectify = require("../Utils/Objectify");
 const {rarity} = require("../constants");
-module.exports = (cli,{number=100,skip=0,sort="startDate",order="d",binOnly=0,filter="none",criteria="none"}) => {
+module.exports = (cli,{number,skip,sort,order,binOnly,filter,criteria}) => {
+    if(!number) number=100
+    if(!sort) sort="startDate"
+    if(!skip) skip=0
+    if(!order) order="d"
     if(!cli.auction) return {"success":"false","reason":"Server not initialized. Try again in a few seconds."};
     if(cli.auction.length>=skip) return {'success':'false','reason':'Out of range'}
     if(number>1000) number = 1000; // No lag ty... 1000 already takes 2mb usually
