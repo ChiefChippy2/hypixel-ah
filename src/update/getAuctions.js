@@ -1,5 +1,5 @@
 const Client = require("../API");
-const PolyFill = require("./polyfill"+process.env.SAFE?"2":"");
+const PolyFill = require("./polyfill"+(process.env.SAFE?"2":""));
 const arrange = require("./arrange");
 const compare = require("./compare");
 const EventEmitter = require('events');
