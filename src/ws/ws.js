@@ -11,7 +11,7 @@ class Socket {
     }
     init(){
       const cli=this.AuctionClient;
-        wss.on('connection', async function connection(client,req) {
+    	wss.on('connection', async function connection(client,req) {
             if(await rateLimiter.check(req.socket.remoteAddress)){
              client.send('Banned',client.terminate);
             }

@@ -17,4 +17,6 @@ async function start(){
     updater();
     })
 }
+//setInterval(()=>console.log(process.memoryUsage().rss/1024/1024),3000)
+//memory profiling...not needed
 start();

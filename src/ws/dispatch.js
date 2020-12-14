@@ -6,7 +6,7 @@ module.exports = class dispatch {
         this.auction.on('update',this.sendToAll.bind(this,ws))
     }
     sendToAll(socket,data){
-        socket.ws.clients.forEach((client) => {
+	      socket.ws.clients.forEach((client) => {
             if (client !== socket.ws && client.readyState === WebSocket.OPEN) {
               client.send(JSON.stringify(data));
             }
