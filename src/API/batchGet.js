@@ -1,6 +1,8 @@
 const Objectify = require("../Utils/Objectify");
 const {rarity} = require("../constants");
 module.exports = (cli,{number,skip,sort,order,binOnly,filter,criteria}) => {
+    number=parseInt(number)
+    skip=parseInt(skip)
     if(!number) number=100
     if(!sort) sort="startDate"
     if(!skip) skip=0
