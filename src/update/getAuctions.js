@@ -14,7 +14,7 @@ module.exports = class GlobalAuctions extends EventEmitter {
         this.reqNum=initial.info.totalPages;
         this.currentPage=0;
         this.auction = arrange(initial.auctions);
-        console.log("Done init")
+        console.log("Done init",this.auction.get("6e77cbe16ec444b699e993f4ba2ab276"))
         return this;
     }
     get calculatedRefresh(){

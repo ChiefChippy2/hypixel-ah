@@ -1,4 +1,4 @@
-const Hypixel=require("../../hypixel-api-reborn2/src/index");
+const Hypixel=require("hypixel-api-reborn");
 module.exports=new Hypixel.Client(process.env.API,{
     rateLimit:"NONE"
 });

@@ -12,7 +12,6 @@
 if(process.env.DBModule)  module.exports = require(process.env.DBModule);
 else if(process.env.NODB) module.exports = {"set":()=>true,"get":()=>false,"delete":()=>true}
 else {
-    const quick = require("quick.db");
     module.exports = {
         "set":(key,value)=>quick.set(key,value),
         "get":(key)=>quick.get(key),
