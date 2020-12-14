@@ -9,12 +9,12 @@ module.exports = {
         if(rl>10) throw new Error('429 - Exceeded Rate Limit')
         rl+=points;
         await db.set('RL'+points);
-        setTimeout(this.minus,1000*60,ip,points)
-    },
-    "minus":async (ip,points=1)=>{
-        let rl = parseInt(await db.get('RL'+ip)) || 0
-        rl-=points;
-        if(rl<0) rl=0;
-        await db.set('RL'+points);
+        setTimeout(minus,1000*60,ip,points)
+        async function minus(ip,points=1){
+          let rl = parseInt(await db.get('RL'+ip)) || 0
+          rl-=points;
+          if(rl<0) rl=0;
+          await db.set('RL'+points);
+        }
     }
 }
