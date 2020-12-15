@@ -11,7 +11,7 @@ module.exports = function (newMap, oldMap) {
         let indexes = ["auctionEnd","bids"].map(x=>x);
         if((value[indexes[0]]-new Date())<1000 && !value.ended){
             //Objectify the value and send it to database
-            db.set(key,value[indexes[0]]);
+            db.set(key,JSON.stringify(value[indexes[0]]));
             oldMap.delete(key); // delete it
             return changes.END.push(key)
         }
