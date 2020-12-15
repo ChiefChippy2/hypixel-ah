@@ -4,9 +4,9 @@ This is a project to make a realtime dashboard of skyblock auctions
 Yes, but they are separate and not really good
 # TODO
 1. Set up backend
-    - Smart & Persistent database update
-    - WS connections to client to emit changes
-    - all ftm
+    [x] Smart & Persistent database update
+    [x] WS connections to client to emit changes
+    [x] Rate limiter
 2. Set up frontend ( site )
     - Device Responsive
     - Real-time feeling ( almost real-time updates, notifications, etc)
