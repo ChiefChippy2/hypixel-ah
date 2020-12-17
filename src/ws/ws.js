@@ -2,7 +2,8 @@ const ws = require("ws");
 const rateLimiter = require("../Private/rateLimit");
 const API = require("../API/");
 const parseMessage = require("./parse.js");
-const wss = new ws.Server({port:8090});
+const wss = new ws.Server({port:process.env.PORT || 8090});
+const APIResponse = require("./APIresponse");
 wss.on('listening',()=>console.log('Hypixel-ah WebSocket is listening to requests!', wss.address()))
 wss.on('error',()=>{throw new Error("Unexpected WS closure")});
 class Socket {
@@ -20,7 +21,7 @@ class Socket {
                 try{
                  const msg = parseMessage(String(message));
                     await rateLimiter.add(req.socket.remoteAddress,2);
-                 return client.send(JSON.stringify(API[msg.action](cli,msg)));
+                 return client.send(new APIResponse(API[msg.action](cli,msg),msg).toSendable());
                 }catch(e){
                     console.log(e)
               return client.send(JSON.stringify({'error':true,'reason':'Unknown Action.'}))

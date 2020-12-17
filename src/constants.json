@@ -9,5 +9,6 @@
         "SUPREME",
         "SPECIAL",
         "VERY_SPECIAL"
-    ]
+    ],
+    "names":["auctionId", "auctioneerUuid", "coop", "auctionStartTimestamp", "auctionStart", "auctionEnd", "auctionEndTimestamp", "item", "itemLore", "itemLoreRaw", "rarity", "startingBid", "highestBid", "bids", "claimed", "claimedBidders", "bin","ending","ended"]
 }

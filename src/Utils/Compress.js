@@ -1,12 +1,9 @@
 const Obj= require("./Objectify")
+const {names} = require("../constants.json");
 module.exports = function (classObj){
-  return classObj;
-  let a= Obj(classObj),b={}
-  let lon=[]
+  let a= Obj(classObj),b=[]
   for(let name in a){
-    b[lon.length]=a[name];
-    lon.push(name)
+    b[names.indexOf(name)]=a[name];
   }
-  b.keys=lon
 return b
 }
