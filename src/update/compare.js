@@ -10,9 +10,10 @@ module.exports = function (newMap, oldMap) {
             return changes.NEW.push(Objectify(value));
         }
         let indexes = ["auctionEnd","bids","ending","ended"].map(x=>names.indexOf(x));
-        if((value.auctionEnd-new Date())<1000 && !oldVal[indexes[3]]){
-            value.ended = true; // no twice emit
-            oldMap.set(key,Compress(value))
+        if((value[indexes[0]]-new Date())<1000){
+            //Objectify the value and send it to database
+            db.set(key,JSON.stringify(value[indexes[0]]));
+            oldMap.delete(key); // delete it
             return changes.END.push(key)
         }
         if((value.auctionEnd-new Date())<1000*60*10 && !oldVal[indexes[3]]){
