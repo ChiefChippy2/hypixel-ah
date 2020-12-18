@@ -18,7 +18,7 @@ module.exports = class GlobalAuctions extends EventEmitter {
         return this;
     }
     get calculatedRefresh(){
-        return 60000/this.reqNum
+        return (parseInt(process.env.CHILL)||60000)/this.reqNum
     }
     async update(){
         const auctions = await Client.getSkyblockAuctions(this.currentPage)
