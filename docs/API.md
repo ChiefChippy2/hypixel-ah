@@ -87,4 +87,4 @@ The response ALWAYS contains a success property.
 
 If false, an additional reason property is provided.
 
-If true, then data is returned. 
+If true, then data is returned, as well as a req property that contains your request ( useful if you are fetching multiple requests at once ) 
