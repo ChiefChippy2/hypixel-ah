@@ -2,6 +2,7 @@ const Client = require("../API");
 const PolyFill = require("./polyfill"+(process.env.SAFE?"2":""));
 const arrange = require("./arrange");
 const compare = require("./compare");
+const clearOld = require("./removeOld");
 const EventEmitter = require('events');
 module.exports = class GlobalAuctions extends EventEmitter {
     constructor(data){
@@ -26,7 +27,12 @@ module.exports = class GlobalAuctions extends EventEmitter {
         const changes = compare(arrange(auctions.auctions),this.auction)
         this.auction = changes.oldMap;
         this.currentPage++;
-        if(this.currentPage>this.reqNum) this.currentPage=0;
+        if(this.currentPage>this.reqNum){
+            this.currentPage=0;
+            const gc =await clearOld(this.auction);
+            this.emit("update",{"END":gc[1]})
+            this.auction = gc[0];
+        }
         this.emit("update",changes.changes)
         return this
     }

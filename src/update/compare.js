@@ -1,6 +1,7 @@
 const Objectify = require("../Utils/Objectify");
 const Compress = require("../Utils/Compress");
 const {names} = require("../constants.json");
+const store = require("../database/store.js");
 module.exports = function (newMap, oldMap) {
     const changes={NEW:[],BID:[],ENDING:[],END:[]} //respectively : NEW, BID, ENDING ( 10 minutes before), END
     newMap.forEach((value,key)=>{
@@ -12,7 +13,7 @@ module.exports = function (newMap, oldMap) {
         let indexes = ["auctionEnd","bids","ending","ended"].map(x=>names.indexOf(x));
         if((value[indexes[0]]-new Date())<1000){
             //Objectify the value and send it to database
-            db.set(key,JSON.stringify(value[indexes[0]]));
+            // no store... unable to store(key,JSON.stringify(value[indexes[0]]));
             oldMap.delete(key); // delete it
             return changes.END.push(key)
         }

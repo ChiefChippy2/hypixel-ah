@@ -65,12 +65,15 @@ CASE MATTERS!
 - get
   + id ( valid auctions uuid )
   + returns : Auction
-- batchGet
+- list
   + number ( amount of number of results to return, max 1000, default 100 )
   + skip ( number of results to skip, default 0 )
   + sort ( sort method, accepts "startDate" ( default ) , "endDate", "rarity", "discover" ( discover = random ))
   + order ( order, accepts "d" for descending or "a" for ascending, default descending )
-  + returns : FakeArray<Auction>
+  + returns : Array<Auction>
+- batchGet
+  + ids ( Array of valid auction IDs)
+  + returns : Array<Auction>
 ### Valid request example : 
 ```json
 {

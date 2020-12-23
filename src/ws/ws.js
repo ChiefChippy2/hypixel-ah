@@ -4,7 +4,7 @@ const API = require("../API/");
 const parseMessage = require("./parse.js");
 const wss = new ws.Server({port:process.env.PORT || 8090});
 const APIResponse = require("./APIresponse");
-wss.on('listening',()=>console.log('Hypixel-ah WebSocket is listening to requests!', wss.address()))
+wss.on('listening',()=>console.log('Hypixel-ah WebSocket is listening to requests, but not ready yet!', wss.address()))
 wss.on('error',()=>{throw new Error("Unexpected WS closure")});
 class Socket {
     constructor(data){
@@ -20,7 +20,7 @@ class Socket {
                 if(!message || message.length>5000) return;
                 try{
                  const msg = parseMessage(String(message));
-                    await rateLimiter.add(req.socket.remoteAddress,2);
+                    await rateLimiter.add(req.socket.remoteAddress().address,2);
                  return client.send(new APIResponse(API[msg.action](cli,msg),msg).toSendable());
                 }catch(e){
                     console.log(e)
@@ -28,7 +28,7 @@ class Socket {
                 }
              });
   
-            client.send('Boop! Connected to hypixel-ah WS.');
+            client.send('Boop! Connected to hypixel-ah WS. IP :'+req.socket.remoteAddress().address);
         });
         return this;
     }
